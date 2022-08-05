@@ -1,0 +1,43 @@
+
+
+<h1>{{title}}</h1>
+
+<!-- {% set page_atual = request.args.get("page")|int if request.args.get("page") else 1  %} -->
+
+<form action="#" class="form-group">
+    <label for="busca">Busca: </label>
+    <input onkeyup="buscar();" type="text" class="form-control" id="busca" name="busca">
+</form>
+
+
+<div id="table-container">
+    <table class="table table-striped">
+        <thead>
+        <tr> <th>Nome</th> <th>Telefone</th> <th>Data de Nascimento</th> </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let contato of contatos.items">
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+                <td>{{contato.dataNascimento}}</td>
+                <td><a href="/remover_contato?id={{contato.id}}">Remover</a></td>
+                <td><a href="/alterar_contato?id={{contato.id}}">Alterar</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <!-- <ul class="pagination">
+        {% for i in range(1, contatos.pages + 1) %}
+            <li
+            {% if page_atual and page_atual == i %}class="active"{% endif %}
+            ><a href="/contatos?page={{i}}">{{i}}</a></li>
+        {% endfor %}
+    </ul> -->
+
+</div>
+
+<p><a href="/adicionar_contato">Adicionar Contato</a></p>
+

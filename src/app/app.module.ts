@@ -10,6 +10,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ContatosListagemComponent } from './contatos-listagem/contatos-listagem.component';
 import { ContatosService } from './contatos-listagem/contatos.service';
 import { WithCredentialsInterceptor } from './with-credentials-interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WithCredentialsInterceptor } from './with-credentials-interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     ContatosService,

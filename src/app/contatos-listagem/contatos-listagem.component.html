@@ -6,7 +6,7 @@
 
 <form action="#" class="form-group">
     <label for="busca">Busca: </label>
-    <input onkeyup="buscar();" type="text" class="form-control" id="busca" name="busca">
+    <input (keyup)="buscar($event)" type="text" class="form-control" id="busca" name="busca">
 </form>
 
 
@@ -18,10 +18,10 @@
 
         <tbody>
 
-            <tr *ngFor="let contato of contatos.items">
+          <tr *ngFor="let contato of contatos|paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
-                <td>{{contato.dataNascimento}}</td>
+                <td>{{contato.data_nascimento}}</td>
                 <td><a href="/remover_contato?id={{contato.id}}">Remover</a></td>
                 <td><a href="/alterar_contato?id={{contato.id}}">Alterar</a></td>
             </tr>
@@ -29,13 +29,7 @@
         </tbody>
     </table>
 
-    <!-- <ul class="pagination">
-        {% for i in range(1, contatos.pages + 1) %}
-            <li
-            {% if page_atual and page_atual == i %}class="active"{% endif %}
-            ><a href="/contatos?page={{i}}">{{i}}</a></li>
-        {% endfor %}
-    </ul> -->
+    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
 
 </div>
 

@@ -3,11 +3,11 @@ import { PageLink } from "./page-link.model";
 
 export class ContatosPagination {
 
-  items: Array<Contato> | undefined;
-  page: bigint | undefined;
-  per_page: bigint | undefined;
-  total: bigint | undefined;
-  pages: bigint | undefined;
-  _links: Array<PageLink> | undefined;
+  items: any;
+  page!: number;
+  per_page!: number;
+  total!: number;
+  pages!: number;
+  _links!: Array<PageLink>;
 
 }

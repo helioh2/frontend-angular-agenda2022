@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Contato } from '../contato.model';
 import { ContatosPagination } from '../contatos-pagination.model';
 import { ContatosService } from './contatos.service';
 
@@ -11,7 +12,13 @@ export class ContatosListagemComponent implements OnInit {
 
   title = "Lista de Contatos"
 
-  contatos: ContatosPagination = new ContatosPagination;
+  contatos: any;
+  page: number = 1;
+  total: number = 0;
+  perPage: number = 10;
+
+  buscaStr: string = "";
+
 
   constructor(private contatosService: ContatosService) { }
 
@@ -20,12 +27,25 @@ export class ContatosListagemComponent implements OnInit {
   }
 
   listar() {
-    this.contatosService.listar().subscribe(
+    this.contatosService.listar(this.page, this.buscaStr).subscribe(
       dados => {
         console.log(dados);
-        this.contatos = dados;
+        this.contatos = dados.items;
+        this.page = dados.page;
+        this.perPage = dados.per_page;
+        this.total = dados.total;
       }
         );
   }
+
+  buscar(event: any) {
+    this.buscaStr = event.target.value;
+    this.listar()
+  }
+
+  pageChangeEvent(event: number){
+    this.page = event;
+    this.listar();
+}
 
 }
